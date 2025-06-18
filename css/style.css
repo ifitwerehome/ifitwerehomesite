@@ -8,7 +8,6 @@
   color: white;
   border-radius: 10px;
   min-width: 280px;
-  box-shadow: 0 0 10px #000;
   text-align: center;
   backdrop-filter: blur(4px);
   display: flex;
@@ -32,13 +31,6 @@
   margin-top: 12px; /* 👈 piccolo spazio tra le due righe */
 }
 
-#description {
-  font-size: 1rem;
-  line-height: 1.4;
-  height: 4.2em; /* 3 righe */
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
 
 .fade {
   opacity: 0;
