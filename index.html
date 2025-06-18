@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="stylesheet" href="css/style.css" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>If It Were Home</title>
@@ -11,9 +12,9 @@
       box-sizing: border-box;
     }
     body, html {
-      height: 100%;
+      min-height: 100%;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      overflow: hidden;
+      overflow-x: hidden; /* keep horizontal overflow hidden, allow scroll */
     }
     .slider {
       position: relative;
@@ -81,15 +82,20 @@
 <body>
   <div class="slider">
     <img src="img/ifitwerehome_red_logo_menu.png" alt="If It Were Home logo" class="logo" />
-    <div class="slide active" style="background-image: url('city1.jpg')" data-city="Rome"></div>
-    <div class="slide" style="background-image: url('city2.jpg')" data-city="Paris"></div>
-    <div class="slide" style="background-image: url('city3.jpg')" data-city="Berlin"></div>
+    <div class="slide active" style="background-image: url('img/iiwh_london.png')" data-city="London"></div>
+    <div class="slide" style="background-image: url('img/iiwh_rome.png')" data-city="Rome"></div>
+    <div class="slide" style="background-image: url('img/iiwh_paris.png')" data-city="Paris"></div>
+    <div class="slide" style="background-image: url('img/iiwh_berlin.png')" data-city="Berlin"></div>
+    <div class="slide" style="background-image: url('img/iiwh_madrid.png')" data-city="Madrid"></div>
 
     <div class="overlay"></div>
     <div class="content">
       <h1 id="headline">WHAT IF IT WERE HOME?</h1>
       <div class="hashtag">#ifitwerehome</div>
-      <p id="description">Rome — A visual campaign to make visible the genocide they want you to ignore.</p>
+      <p id="description">A visual campaign to make visible the genocide they want you to ignore.</p>
+      <div class="impact-section" id="impact">
+  <!-- Stats will appear here dynamically -->
+</div>
     </div>
   </div>
 
@@ -98,28 +104,84 @@
     const description = document.getElementById('description');
 
     const descriptions = {
-      'Rome': 'Rome — A visual campaign to make visible the genocide they want you to ignore.',
-      'Paris': 'Paris — Imagine this happening where you live.',
-      'Berlin': 'Berlin — What if it happened to your home?'
+      'London': 'A visual campaign to make visible the genocide they want you to ignore.',
+      'Rome': 'Una campagna visiva per rendere visibile il genocidio che vogliono farci ignorare.',
+      'Paris': 'Une campagne visuelle pour rendre visible le génocide qu’on veut vous faire ignorer.',
+      'Berlin': 'Eine visuelle Kampagne, um den Völkermord sichtbar zu machen, den man euch verschweigen will.',
+      'Madrid': 'Una campaña visual para hacer visible el genocidio que quieren que ignores.'
+    };
+
+    const stats = {
+      'London': {
+        deaths: '302,000',
+        homes: '1,320,000'
+      },
+      'Rome': {
+        deaths: '89,000',
+        homes: '390,000'
+      },
+      'Paris': {
+        deaths: '66,000',
+        homes: '294,000'
+      },
+      'Berlin': {
+        deaths: '117,000',
+        homes: '518,000'
+      },
+      'Madrid': {
+        deaths: '105,000',
+        homes: '462,000'
+      }
     };
 
     let current = 0;
 
-    function showSlide(index) {
-      slides.forEach((slide, i) => {
-        slide.classList.remove('active');
-        if (i === index) {
-          slide.classList.add('active');
-          const city = slide.dataset.city;
-          description.textContent = descriptions[city];
-        }
-      });
+const impact = document.getElementById('impact');
+
+function showSlide(index) {
+  slides.forEach((slide, i) => {
+    slide.classList.remove('active');
+    if (i === index) {
+      slide.classList.add('active');
+      const city = slide.dataset.city;
+      description.textContent = descriptions[city];
+
+      // Reset fade animation
+      impact.classList.remove('show');
+      void impact.offsetWidth; // forza il reflow per ri-triggerare l’animazione
+      impact.classList.add('fade'); // assicura che la classe base ci sia
+      impact.classList.add('show');
+
+      // Aggiorna contenuto
+      impact.innerHTML = `
+        <h3>${city}</h3>
+        <p><strong>${stats[city].deaths}</strong> deaths</p>
+        <p><strong>${stats[city].homes}</strong> homes destroyed</p>
+      `;
+      impact.classList.add('fade', 'show');
+
     }
+  });
+}
+
+    //Inizializza subito con la prima città
+    showSlide(0);
 
     setInterval(() => {
       current = (current + 1) % slides.length;
       showSlide(current);
     }, 5000);
   </script>
+    <footer style="
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+    color: #ccc;
+    font-size: 0.9rem;
+    z-index: 5;
+  ">
+    All images shown are AI-generated and used for awareness purposes only.
+  </footer>
 </body>
 </html>
