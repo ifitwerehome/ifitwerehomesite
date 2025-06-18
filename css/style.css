@@ -49,9 +49,26 @@
   opacity: 1;
 }
 
-@media (max-width: 768px) {
-  .impact-section {
-    top: 90%;
-    transform: translate(-50%, -55%);
+@media (max-width: 767px) {
+  .logo {
+    width: 60px;         /* più piccolo */
+    top: 12px;
+    left: 12px;
+  }
+}
+
+@media (max-width: 767px) {
+  .content {
+    top: 42%; /* invece di 50% */
+  }
+}
+
+@media (max-width: 767px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  #description {
+    font-size: 0.95rem;
   }
 }
