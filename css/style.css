@@ -68,6 +68,13 @@
     font-size: 2rem;
   }
 
+  @media (max-width: 767px) {
+  .impact-section {
+    top: 75%;
+    transform: translate(-50%, -50%);
+  }
+}
+
   #description {
     font-size: 0.95rem;
   }
