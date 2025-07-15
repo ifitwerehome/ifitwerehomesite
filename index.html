@@ -79,6 +79,22 @@
     }
   </style>
 </head>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const menuToggle = document.querySelector('.menu-toggle');
+  const menuClose = document.querySelector('.menu-close');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  menuToggle.addEventListener('click', () => {
+    mobileMenu.style.right = '0px';
+  });
+
+  menuClose.addEventListener('click', () => {
+    mobileMenu.style.right = '-250px';
+  });
+});
+</script>
 <body>
 <header class="main-header">
   <a href="index.html">
@@ -94,8 +110,8 @@
   <button class="menu-toggle" aria-label="Open menu">☰</button>
 </header>
 
-<!-- Off-canvas menu -->
 <nav class="mobile-menu" id="mobileMenu">
+  <button class="menu-close" aria-label="Close menu">✖</button>
   <ul>
     <li><a href="index.html">Home</a></li>
     <li><a href="nobel.html">Nobel Campaign</a></li>

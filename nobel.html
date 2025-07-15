@@ -84,21 +84,45 @@
     }
   </style>
 </head>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const menuToggle = document.querySelector('.menu-toggle');
+  const menuClose = document.querySelector('.menu-close');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  menuToggle.addEventListener('click', () => {
+    mobileMenu.style.right = '0px';
+  });
+
+  menuClose.addEventListener('click', () => {
+    mobileMenu.style.right = '-250px';
+  });
+});
+</script>
 <body>
 <header class="main-header">
-  <div class="container">
-    <a href="index.html">
-        <img src="img/ifitwerehome_red_logo_menu.png" alt="If It Were Home logo" class="header-logo"/>
-    </a>
-    <nav class="main-nav">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="nobel.html">Nobel Campaign</a></li>
-        <li><a href="boycott.html">Boycott Guide</a></li>
-      </ul>
-    </nav>
-  </div>
+  <a href="index.html">
+    <img src="img/ifitwerehome_red_logo_menu.png" alt="If It Were Home logo" class="header-logo"/>
+  </a>
+  <nav class="main-nav">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="nobel.html">Nobel Campaign</a></li>
+      <li><a href="boycott.html">Boycott Guide</a></li>
+    </ul>
+  </nav>
+  <button class="menu-toggle" aria-label="Open menu">☰</button>
 </header>
+
+<nav class="mobile-menu" id="mobileMenu">
+  <button class="menu-close" aria-label="Close menu">✖</button>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="nobel.html">Nobel Campaign</a></li>
+    <li><a href="boycott.html">Boycott Guide</a></li>
+  </ul>
+</nav>
+
   <main>
     <h1>Support Francesca Albanese for the Nobel Peace Prize</h1>
     <img src="img/falbanese_nobel.jpg" alt="Boycott illustration" style="max-width:60%; border-radius:8px; margin:20px 0;">
